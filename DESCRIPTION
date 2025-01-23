@@ -1,0 +1,32 @@
+Package: WebCMap
+Type: Package
+Title: An ultra-fast connectivity analysis tool using web technologies to accelerate computations based on the extended Connectivity Map (CMap)
+Version: 0.1.0
+Author: Hongen Kang
+Maintainer: Hongen Kang <kanghongen@gmail.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+Imports: 
+    AnnotationDbi,
+    assertthat,
+    fgsea,
+    httr,
+    jsonlite,
+    lsa,
+    org.Hs.eg.db,
+    parallel,
+    utils,
+    knitr,
+    base,
+    stats
+Depends: 
+    R (>= 2.10)
