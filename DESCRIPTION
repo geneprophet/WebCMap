@@ -27,6 +27,9 @@ Imports:
     utils,
     knitr,
     base,
-    stats
+    stats,
+    fmsb,
+    ggvenn,
+    ggpubr
 Depends: 
-    R (>= 2.10)
+    R (>= 3.60)

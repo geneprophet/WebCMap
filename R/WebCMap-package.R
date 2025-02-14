@@ -11,12 +11,15 @@
 #' @import httr
 #' @import org.Hs.eg.db
 #' @importFrom jsonlite fromJSON
-#' @importFrom fgsea fgsea
 #' @importFrom assertthat assert_that
 #' @importFrom lsa cosine
 #' @importFrom utils head tail
 #' @importFrom AnnotationDbi mapIds
 #' @importFrom stats cor
+#' @import fmsb
+#' @import fgsea
+#' @import ggvenn
+#' @import ggpubr
 
 ## usethis namespace: start
 ## usethis namespace: end
@@ -28,4 +31,3 @@ options(scipen = 999)
 # system.time({
 #   res = run_negative_CMap(query_signature = query_signature,K=50,cores=10)
 # })
-
