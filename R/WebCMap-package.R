@@ -26,8 +26,3 @@
 NULL
 options(scipen = 999)
 
-
-# data(query_signature)
-# system.time({
-#   res = run_negative_CMap(query_signature = query_signature,K=50,cores=10)
-# })
