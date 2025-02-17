@@ -329,6 +329,7 @@ run_negative_CMap = function(query_signature,
   assertthat::assert_that(check_query_signature(query_signature))
   candidate_signatures = screen_negative_candidate_signature(query_signature, K =
                                                                K, cores = cores)
+  assertthat::assert_that(length(candidate_signatures) > 0)
   ##step2: run negative connectivity analysis
   clus = parallel::makeCluster(cores)
   parallel::clusterExport(clus,
@@ -338,6 +339,7 @@ run_negative_CMap = function(query_signature,
                             as.numeric(candidate_signatures),
                             negative_query_CMap)
   all_res = do.call(rbind, res)
+  assertthat::assert_that(nrow(all_res) > 0)
   #meta score, top 5% will be assigned as 1
   if (nrow(all_res) >= 20) {
     Meta_score = as.numeric(rank(all_res$WTCS) <= round(nrow(all_res) * 0.05)) +
@@ -383,6 +385,7 @@ run_positive_CMap = function(query_signature,
   assertthat::assert_that(check_query_signature(query_signature))
   candidate_signatures = screen_positive_candidate_signature(query_signature, K =
                                                                K, cores = cores)
+  assertthat::assert_that(length(candidate_signatures) > 0)
   ##step2: run negative connectivity analysis
   clus = parallel::makeCluster(cores)
   parallel::clusterExport(clus,
@@ -392,6 +395,7 @@ run_positive_CMap = function(query_signature,
                             as.numeric(candidate_signatures),
                             positive_query_CMap)
   all_res = do.call(rbind, res)
+  assertthat::assert_that(nrow(all_res) > 0)
   #meta score, top 5% will be assigned as 1
   if (nrow(all_res) >= 20) {
     Meta_score = as.numeric(rank(all_res$WTCS,na.last = F) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
