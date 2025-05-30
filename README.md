@@ -51,9 +51,7 @@ Bipolar disorder using WebCMap:
 ``` R
 # load WebCMap
 library(WebCMap)
-# load the example query_signature, which is derived from TWAS analysis of Bipolar disorder (PMID:34002096
-        
-        )
+# load the example query_signature, which is derived from TWAS analysis of Bipolar disorder (PMID:34002096)
 data(query_signature)
 
 head(query_signature)
