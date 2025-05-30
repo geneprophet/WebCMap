@@ -30,7 +30,13 @@ objectives include:
     drug candidates and similar drug/toxic/compound searching.
 
 ## Installation
+Before install WebCMap, you should install dependencies:
 
+``` R
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c("AnnotationDbi","org.Hs.eg.db","fgsea"))
+```
 You can install the WebCMap like so:
 
 ``` R
