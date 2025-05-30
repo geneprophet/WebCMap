@@ -25,7 +25,3 @@
 ## usethis namespace: end
 NULL
 options(scipen = 999)
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install(c("AnnotationDbi","org.Hs.eg.db","fgsea"))
