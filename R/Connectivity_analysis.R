@@ -7,11 +7,13 @@
 #' @examples
 #' data(query_signature)
 #' K=50
-#' res = negative_query_CMap(519170)
+#' res = negative_query_CMap(506400)
+#'
+
 negative_query_CMap = function(signature_index) {
   #order and remove NA zscore, two columns: zscore and gene_id
   query_signature = query_signature[order(query_signature$zscore,
-                                          decreasing = T,
+                                          decreasing = TRUE,
                                           na.last = NA), ]
   query_up_gene = head(query_signature$gene_id, K)
   query_down_gene = tail(query_signature$gene_id, K)
@@ -22,7 +24,7 @@ negative_query_CMap = function(signature_index) {
       cmap_signature = retrieveCmapSignature(as.numeric(signature_index))
       #order and remove NA modz
       cmap_signature = cmap_signature[order(cmap_signature$modz,
-                                            decreasing = T,
+                                            decreasing = TRUE,
                                             na.last = NA), ]
       cmap_up_gene = head(cmap_signature$gene_id, K)
       cmap_down_gene = tail(cmap_signature$gene_id, K)
@@ -35,7 +37,7 @@ negative_query_CMap = function(signature_index) {
       merge_cmap_query = merge(cmap_signature,
                                query_signature,
                                by = "gene_id",
-                               all.X = T)
+                               all.X = TRUE)
       Spearman_whole = cor(merge_cmap_query$zscore,
                            merge_cmap_query$modz,
                            method = "spearman")
@@ -52,7 +54,7 @@ negative_query_CMap = function(signature_index) {
         #2.Xsum: disease signature: membership of top and bottom K genes; cmap: modz values of top and bottom K genes
         XUpInDisease = intersect(query_up_gene, cmap_signature_gene)
         XDownInDisease = intersect(query_down_gene, cmap_signature_gene)
-        XSum = sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XUpInDisease))], na.rm = T) - sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XDownInDisease))], na.rm = T)
+        XSum = sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XUpInDisease))], na.rm = TRUE) - sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XDownInDisease))], na.rm = TRUE)
         ## The permutation results is pre-defined and can be retrived from webserver
         permuteNum = 10000
         permuteResult = retrievePermutationResult(signature_index = as.numeric(signature_index),
@@ -162,13 +164,15 @@ negative_query_CMap = function(signature_index) {
 #' @return a \code{data.frame}
 #' @export
 #' @examples
-#' data(query_signature)
+#' data(query_signature2)
+#' query_signature = query_signature2
 #' K=50
 #' res = positive_query_CMap(519170)
+#'
 positive_query_CMap = function(signature_index) {
   #order and remove NA zscore, two columns: zscore and gene_id
   query_signature = query_signature[order(query_signature$zscore,
-                                          decreasing = T,
+                                          decreasing = TRUE,
                                           na.last = NA), ]
   query_up_gene = head(query_signature$gene_id, K)
   query_down_gene = tail(query_signature$gene_id, K)
@@ -179,7 +183,7 @@ positive_query_CMap = function(signature_index) {
       cmap_signature = retrieveCmapSignature(as.numeric(signature_index))
       #order and remove NA modz
       cmap_signature = cmap_signature[order(cmap_signature$modz,
-                                            decreasing = T,
+                                            decreasing = TRUE,
                                             na.last = NA), ]
       cmap_up_gene = head(cmap_signature$gene_id, K)
       cmap_down_gene = tail(cmap_signature$gene_id, K)
@@ -192,7 +196,7 @@ positive_query_CMap = function(signature_index) {
       merge_cmap_query = merge(cmap_signature,
                                query_signature,
                                by = "gene_id",
-                               all.X = T)
+                               all.X = TRUE)
       Spearman_whole = cor(merge_cmap_query$zscore,
                            merge_cmap_query$modz,
                            method = "spearman")
@@ -209,7 +213,7 @@ positive_query_CMap = function(signature_index) {
         #2.Xsum: disease signature: membership of top and bottom K genes; cmap: modz values of top and bottom K genes
         XUpInDisease = intersect(query_up_gene, cmap_signature_gene)
         XDownInDisease = intersect(query_down_gene, cmap_signature_gene)
-        XSum = sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XUpInDisease))], na.rm = T) - sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XDownInDisease))], na.rm = T)
+        XSum = sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XUpInDisease))], na.rm = TRUE) - sum(cmap_signature$modz[which(is.element(cmap_signature$gene_id, XDownInDisease))], na.rm = TRUE)
         ## The permutation results is pre-defined and can be retrived from webserver
         permuteNum = 10000
         permuteResult = retrievePermutationResult(signature_index = as.numeric(signature_index),
@@ -322,6 +326,12 @@ positive_query_CMap = function(signature_index) {
 #' @return a \code{data.frame} object
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#'  data(query_signature1)
+#'  res = run_negative_CMap(query_signature1,K=50,cores=10)
+#' }
+
 run_negative_CMap = function(query_signature,
                              K = 50,
                              cores = 5) {
@@ -364,7 +374,7 @@ run_negative_CMap = function(query_signature,
   all_meta = all_meta[, -c(1, 2)]
   parallel::stopCluster(clus)
   results = cbind(all_res, all_meta)
-  results = results[order(results$Meta_score, decreasing = T), ]
+  results = results[order(results$Meta_score, decreasing = TRUE), ]
   return(results)
 }
 
@@ -377,6 +387,12 @@ run_negative_CMap = function(query_signature,
 #'
 #' @return a \code{data.frame} object
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#'  data(query_signature2)
+#'  res = run_positive_CMap(query_signature2,K=50,cores=10)
+#' }
 #'
 run_positive_CMap = function(query_signature,
                              K = 50,
@@ -398,19 +414,19 @@ run_positive_CMap = function(query_signature,
   assertthat::assert_that(nrow(all_res) > 0)
   #meta score, top 5% will be assigned as 1
   if (nrow(all_res) >= 20) {
-    Meta_score = as.numeric(rank(all_res$WTCS,na.last = F) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
-      as.numeric(rank(all_res$XSum,na.last = F) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
-      as.numeric(rank(all_res$CSS,na.last = F) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
-      as.numeric(rank(all_res$Spearman_correlation,na.last = F) > (nrow(all_res) - round(nrow(all_res) *0.05))) +
-      as.numeric(rank(all_res$Pearson_correlation,na.last = F) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
-      as.numeric(rank(all_res$Consine_similarity,na.last = F) > (nrow(all_res) - round(nrow(all_res) * 0.05)))
+    Meta_score = as.numeric(rank(all_res$WTCS,na.last = FALSE) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
+      as.numeric(rank(all_res$XSum,na.last = FALSE) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
+      as.numeric(rank(all_res$CSS,na.last = FALSE) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
+      as.numeric(rank(all_res$Spearman_correlation,na.last = FALSE) > (nrow(all_res) - round(nrow(all_res) *0.05))) +
+      as.numeric(rank(all_res$Pearson_correlation,na.last = FALSE) > (nrow(all_res) - round(nrow(all_res) * 0.05))) +
+      as.numeric(rank(all_res$Consine_similarity,na.last = FALSE) > (nrow(all_res) - round(nrow(all_res) * 0.05)))
   } else{
-    Meta_score = as.numeric(rank(all_res$WTCS,na.last = F) >= nrow(all_res)) +
-      as.numeric(rank(all_res$XSum,na.last = F) >= nrow(all_res)) +
-      as.numeric(rank(all_res$CSS,na.last = F) >= nrow(all_res)) +
-      as.numeric(rank(all_res$Spearman_correlation,na.last = F) >= nrow(all_res)) +
-      as.numeric(rank(all_res$Pearson_correlation,na.last = F) >= nrow(all_res)) +
-      as.numeric(rank(all_res$Consine_similarity,na.last = F) >= nrow(all_res))
+    Meta_score = as.numeric(rank(all_res$WTCS,na.last = FALSE) >= nrow(all_res)) +
+      as.numeric(rank(all_res$XSum,na.last = FALSE) >= nrow(all_res)) +
+      as.numeric(rank(all_res$CSS,na.last = FALSE) >= nrow(all_res)) +
+      as.numeric(rank(all_res$Spearman_correlation,na.last = FALSE) >= nrow(all_res)) +
+      as.numeric(rank(all_res$Pearson_correlation,na.last = FALSE) >= nrow(all_res)) +
+      as.numeric(rank(all_res$Consine_similarity,na.last = FALSE) >= nrow(all_res))
   }
 
   all_res = cbind(all_res[, 1], Meta_score, all_res[, 2:ncol(all_res)])
@@ -421,6 +437,6 @@ run_positive_CMap = function(query_signature,
   all_meta = all_meta[, -c(1, 2)]
   parallel::stopCluster(clus)
   results = cbind(all_res, all_meta)
-  results = results[order(results$Meta_score, decreasing = T), ]
+  results = results[order(results$Meta_score, decreasing = TRUE), ]
   return(results)
 }

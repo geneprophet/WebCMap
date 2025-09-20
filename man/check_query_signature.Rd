@@ -16,7 +16,10 @@ A \code{logical} object
 Verify if the input data.frame of the query signature contains both the gene_id and zscore columns.
 }
 \examples{
-data(query_signature)
-check_query_signature(query_signature)
+
+ data(query_signature)
+ K=50
+ check_query_signature(query_signature)
+
 
 }

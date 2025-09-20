@@ -15,3 +15,9 @@ candidate signature index
 \description{
 checkExistenceInCmapUp
 }
+\examples{
+data(query_signature)
+K=50
+checkExistenceInCmapUp(gene_id="348")
+
+}

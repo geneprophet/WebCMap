@@ -15,3 +15,8 @@ The ggplot object
 \description{
 radar plot
 }
+\examples{
+data(res1)
+data = res1[1,]
+radar_plot(data)
+}

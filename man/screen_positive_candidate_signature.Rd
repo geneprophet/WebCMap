@@ -19,3 +19,10 @@ a \code{vector}
 \description{
 screening positive candidate signatures
 }
+\examples{
+
+ data(query_signature2)
+ K=50
+ screen_positive_candidate_signature(query_signature2,K=50,cores=1)
+
+}

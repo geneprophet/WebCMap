@@ -4,7 +4,10 @@
 #'
 #' @return The ggplot object
 #' @export
-#'
+#' @examples
+#' data(res1)
+#' data = res1[1,]
+#' radar_plot(data)
 radar_plot <- function(data) {
   assertthat::assert_that(nrow(data)==1)
   dat = data.frame(
@@ -52,9 +55,15 @@ radar_plot <- function(data) {
 #' gsea plot
 #'
 #' @param data the selected connectivity analysis result \code{data.frame} to plot
-#'
+#' @param query_signature A data frame containing gene signatures
+#' @param K Integer, number of extreme genes
 #' @return The ggplot object
 #' @export
+#' @examples
+#' data(res1)
+#' data(query_signature1)
+#' data = res1[1,]
+#' gsea_plot(data, query_signature1, K = 50)
 #'
 gsea_plot <- function(data, query_signature, K = 50) {
   assertthat::assert_that(nrow(data)==1)
@@ -62,7 +71,7 @@ gsea_plot <- function(data, query_signature, K = 50) {
   cmap_ranks = cmap_signature$modz
   names(cmap_ranks) = cmap_signature$gene_id
   query_signature = query_signature[order(query_signature$zscore,
-                                          decreasing = T,
+                                          decreasing = TRUE,
                                           na.last = NA), ]
   query_up_gene = head(query_signature$gene_id, K)
   query_down_gene = tail(query_signature$gene_id, K)
@@ -86,20 +95,25 @@ gsea_plot <- function(data, query_signature, K = 50) {
 #' venn plot
 #'
 #' @param data the selected connectivity analysis result \code{data.frame} to plot
-#'
+#' @param query_signature A data frame containing gene signatures
+#' @param K Integer, number of extreme genes
 #' @return The ggplot object
 #' @export
-#'
+#' @examples
+#' data(res1)
+#' data(query_signature1)
+#' data = res1[1,]
+#' venn_plot(data, query_signature1, K=50)
 venn_plot <- function(data, query_signature, K = 50) {
   assertthat::assert_that(nrow(data)==1)
   cmap_signature = retrieveCmapSignature(as.numeric(data$signature_index))
   cmap_signature = cmap_signature[order(cmap_signature$modz,
-                                        decreasing = T,
+                                        decreasing = TRUE,
                                         na.last = NA), ]
   cmap_up_gene = head(cmap_signature$gene_id, K)
   cmap_down_gene = tail(cmap_signature$gene_id, K)
   query_signature = query_signature[order(query_signature$zscore,
-                                          decreasing = T,
+                                          decreasing = TRUE,
                                           na.last = NA), ]
   query_up_gene = head(query_signature$gene_id, K)
   query_down_gene = tail(query_signature$gene_id, K)

@@ -7,7 +7,7 @@
 
 #' Convert gene Symbol to ENTREZ ID
 #'
-#' @param a vector of gene symbols
+#' @param x a vector of gene symbols
 #'
 #' @return a vector of ENTREZ IDs
 #' @export
@@ -23,7 +23,7 @@ SYMBOLtoENTREZ <- function(x){
 
 #' Convert ENSEMBL ID to ENTREZ ID
 #'
-#' @param a vector of ENSEMBL IDs
+#' @param x a vector of ENSEMBL IDs
 #'
 #' @return a vector of ENTREZ IDs
 #' @export

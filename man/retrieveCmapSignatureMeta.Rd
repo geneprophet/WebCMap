@@ -15,3 +15,9 @@ a \code{data.frame} object
 \description{
 Retrieve CMap signature meta information from remote server
 }
+\examples{
+
+K=50
+retrieveCmapSignatureMeta(signature_index=519170)
+
+}

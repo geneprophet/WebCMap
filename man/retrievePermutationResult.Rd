@@ -17,3 +17,9 @@ a \code{data.frame}
 \description{
 retrieve the Permutation result from remote server
 }
+\examples{
+
+K=50
+retrievePermutationResult(signature_index=519170,method="CSS")
+
+}

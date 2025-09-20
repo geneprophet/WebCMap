@@ -4,7 +4,13 @@
 #'
 #' @return candidate signature index
 #' @export
+#' @examples
+#' data(query_signature)
+#' K=50
+#' checkExistenceInCmapUp(gene_id="348")
 #'
+
+
 checkExistenceInCmapUp = function(gene_id){
   gene_id = as.numeric(gene_id)
   assertthat::assert_that(assertthat::is.number(gene_id),msg = "the gene id is not included in the extended CMap")
@@ -47,7 +53,13 @@ checkExistenceInCmapUp = function(gene_id){
 #'
 #' @return candidate signature index
 #' @export
+#' @examples
 #'
+#' data(query_signature)
+#' K=50
+#' checkExistenceInCmapDown(gene_id="348")
+#'
+
 checkExistenceInCmapDown = function(gene_id){
   gene_id = as.numeric(gene_id)
   assertthat::assert_that(assertthat::is.number(gene_id),msg = "the gene id is not included in the extended CMap")
@@ -90,7 +102,12 @@ checkExistenceInCmapDown = function(gene_id){
 #'
 #' @return a \code{data.frame} object
 #' @export
+#' @examples
 #'
+#' K=50
+#' retrieveCmapSignature(signature_index=519170)
+#'
+
 retrieveCmapSignature = function(signature_index){
   assertthat::assert_that(assertthat::is.number(signature_index), signature_index >= 1, signature_index <= 720216,msg = "the signature is not included in the extended CMap")
   # 最大重试次数
@@ -132,7 +149,12 @@ retrieveCmapSignature = function(signature_index){
 #'
 #' @return a \code{data.frame} object
 #' @export
+#' @examples
 #'
+#' K=50
+#' retrieveCmapSignatureMeta(signature_index=519170)
+#'
+
 retrieveCmapSignatureMeta = function(signature_index){
   assertthat::assert_that(assertthat::is.number(signature_index), signature_index >= 1, signature_index <= 720216,msg = "the signature is not included in the extended CMap")
   # 最大重试次数
@@ -175,7 +197,12 @@ retrieveCmapSignatureMeta = function(signature_index){
 #'
 #' @return a \code{data.frame}
 #' @export
+#' @examples
 #'
+#' K=50
+#' retrievePermutationResult(signature_index=519170,method="CSS")
+#'
+
 retrievePermutationResult = function(signature_index,method){
   assertthat::assert_that(assertthat::is.number(signature_index), signature_index >= 1, signature_index <= 720216,msg = "the signature is not included in the extended CMap")
   # 最大重试次数

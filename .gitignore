@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+*.Rproj
+.Rproj.user/
+inst/doc
+.DS_Store
+.github/
+.README.Rmd

@@ -8,10 +8,20 @@ venn_plot(data, query_signature, K = 50)
 }
 \arguments{
 \item{data}{the selected connectivity analysis result \code{data.frame} to plot}
+
+\item{query_signature}{A data frame containing gene signatures}
+
+\item{K}{Integer, number of extreme genes}
 }
 \value{
 The ggplot object
 }
 \description{
 venn plot
+}
+\examples{
+data(res1)
+data(query_signature1)
+data = res1[1,]
+venn_plot(data, query_signature1, K=50)
 }

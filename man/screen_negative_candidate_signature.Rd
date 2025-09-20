@@ -19,3 +19,10 @@ a \code{vector}
 \description{
 screening negative candidate signatures
 }
+\examples{
+
+data(query_signature)
+K=50
+screen_negative_candidate_signature(query_signature,K=50,cores=1)
+
+}

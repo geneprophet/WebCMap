@@ -7,7 +7,7 @@
 ENSEMBLIDtoENTREZ(x)
 }
 \arguments{
-\item{a}{vector of ENSEMBL IDs}
+\item{x}{a vector of ENSEMBL IDs}
 }
 \value{
 a vector of ENTREZ IDs

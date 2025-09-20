@@ -7,7 +7,7 @@
 SYMBOLtoENTREZ(x)
 }
 \arguments{
-\item{a}{vector of gene symbols}
+\item{x}{a vector of gene symbols}
 }
 \value{
 a vector of ENTREZ IDs
