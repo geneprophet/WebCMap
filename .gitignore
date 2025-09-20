@@ -7,5 +7,5 @@
 inst/doc
 .DS_Store
 .github/
-.README.Rmd
+README.Rmd
 .Rbuildignore
