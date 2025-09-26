@@ -37,10 +37,10 @@ You can install the WebCMap like so:
 devtools::install_github("geneprophet/WebCMap")
 ```
 
-or download the source package
+or download the source package from release: [WebCMap](https://github.com/geneprophet/WebCMap/archive/refs/tags/v0.99.0.tar.gz)
 
 ``` R
-install.packages("/path/to/WebCMap_0.1.0.tar.gz", repos = NULL, type = "source")
+install.packages("/path/to/WebCMap_0.99.0.tar.gz", repos = NULL, type = "source")
 ```
 
 ## Example
