@@ -95,11 +95,11 @@ head(res)
 #........
 ```
 
-Visualization of CAD-lisofylline pair:
+Visualization of bipolar disorder-SC-12267 pair:
 
 ``` r
-#filter the CAD-lisofylline pair:
-data = res[res$cmap_name=="lisofylline",]
+#filter the bipolar disorder-SC-12267 pair:
+data = res[res$cmap_name=="SC-12267",]
 ```
 
 Radar plot:  
