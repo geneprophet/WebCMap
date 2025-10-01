@@ -50,12 +50,12 @@ remotes::install_local("/path/to/WebCMap_0.99.0.tar.gz", dependencies = TRUE)
 ## Example
 
 This is a basic example demonstrating how to screen candidate drugs for
-coronary artery disease (CAD) using WebCMap:
+bipolar disorder using WebCMap:
 
 ``` R
 # load WebCMap
 library(WebCMap)
-# load the example query_signature, which is derived from TWAS analysis of CAD (PMID:28209224)
+# load the example query_signature, which is derived from TWAS analysis of bipolar disorder (PMID:34002096)
 data(query_signature)
 
 head(query_signature)
