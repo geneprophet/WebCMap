@@ -40,7 +40,11 @@ devtools::install_github("geneprophet/WebCMap")
 or download the source package from release: [WebCMap](https://github.com/geneprophet/WebCMap/archive/refs/tags/v0.99.0.tar.gz)
 
 ``` R
-install.packages("/path/to/WebCMap_0.99.0.tar.gz", repos = NULL, type = "source")
+if (!requireNamespace("remotes", quietly = TRUE))
+    install.packages("remotes")
+
+remotes::install_local("/path/to/WebCMap_0.99.0.tar.gz", dependencies = TRUE)
+
 ```
 
 ## Example
